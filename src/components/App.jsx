@@ -1,15 +1,13 @@
-import Card from './Card';
+import _ from 'lodash';
+import { connect } from 'react-redux';
+import StaysList from './StaysList';
 
-const App = () => (
+const App = ({ stays }) => (
   <div className="text-gray-800">
-    <Card
-      name="Stylist apartment in the center of the city"
-      img="https://images.unsplash.com/photo-1505873242700-f289a29e1e0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=2255&q=80"
-      rating="4.40"
-      type="Entire apartment . 2 beds"
-      isSuperHost
-    />
+    <StaysList stays={stays} />
   </div>
 );
 
-export default App;
+const mapStateToProps = (state) => _.pick(state, 'stays');
+
+export default connect(mapStateToProps)(App);

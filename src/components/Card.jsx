@@ -1,8 +1,10 @@
 import StarIcon from '../assets/star.svg';
 
 const Card = ({ name, img, rating, type, isSuperHost }) => (
-  <figure className="w-4/12">
-    <img src={img} className="rounded-3xl" alt="" />
+  <figure>
+    <div className="aspect-w-3 aspect-h-2">
+      <img className="object-cover rounded-3xl" src={img} alt="" />
+    </div>
     <div className="grid grid-cols-card-info grid-rows-card-info items-center gap-y-3 gap-x-4 font-medium whitespace-nowrap py-4">
       <div>
         {isSuperHost && (
