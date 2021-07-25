@@ -8,19 +8,18 @@ const SearchSummary = ({ items, onClick }) => {
 
       return (
         <Fragment key={i}>
-          <span
-            className={`leading-14 px-4 hover:bg-gray-100 cursor-pointer ${color}`}
-            onClick={() => onClick(i)}
-          >
-            {content}
-          </span>
+          <div className="h-14 px-4 flex items-center hover:bg-gray-100 cursor-pointer">
+            <span className={color} onClick={() => onClick(i)}>
+              {content}
+            </span>
+          </div>
           <span className="border-r border-gray-100 h-14" />
         </Fragment>
       );
     });
 
   return (
-    <div className="flex items-center shadow-blur rounded-2xl overflow-hidden select-none h-14">
+    <div className="flex items-center shadow-blur rounded-2xl overflow-hidden select-none h-14 my-4 landscape:my-8 mx-auto landscape:mx-0">
       {renderFields(items)}
       <img src={SearchIcon} alt="Search" className="px-4" />
     </div>

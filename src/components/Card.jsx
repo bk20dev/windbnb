@@ -16,7 +16,7 @@ const Card = ({ name, img, rating, type, isSuperHost }) => (
       </div>
       <div className="flex justify-end items-center">
         <img src={StarIcon} alt="" className="w-6 mr-2" />
-        <span>{rating}</span>
+        <span>{rating.toFixed(2)}</span>
       </div>
       <p className="text-base font-semibold truncate">{name}</p>
     </div>

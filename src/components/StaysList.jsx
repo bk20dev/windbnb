@@ -7,10 +7,7 @@ const StaysList = ({ stays }) => {
   };
 
   return (
-    <div
-      className="grid gap-8"
-      style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(24.75rem, 1fr))' }}
-    >
+    <div className="grid gap-8 grid-cols-1 landscape:grid-cols-card-list">
       {stays.map(({ title, photo, rating, type, beds, superHost }, i) => (
         <Card
           key={i}
