@@ -7,12 +7,12 @@ const StaysHeader = ({ place, count }) => {
     return `${count} stays`;
   };
 
-  const location = serializePlace(place);
+  const placeText = serializePlace(place);
 
   return (
     <header className="my-8 flex items-center justify-between">
       <h1 className="text-2xl font-bold">
-        Stays {place ? `in ${location}` : 'worldwide'}
+        Stays {placeText ? `in ${placeText}` : 'worldwide'}
       </h1>
       <p className="text-sm font-medium text-gray-600">{getCountText(count)}</p>
     </header>
