@@ -7,7 +7,7 @@ const StaysList = ({ stays }) => {
   };
 
   return (
-    <div className="grid gap-8 grid-cols-1 landscape:grid-cols-card-list">
+    <div className="grid grid-cols-1 gap-8 landscape:grid-cols-card-list">
       {stays.map(({ title, photo, rating, type, beds, superHost }, i) => (
         <Card
           key={i}

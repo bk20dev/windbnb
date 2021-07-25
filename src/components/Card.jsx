@@ -3,16 +3,16 @@ import StarIcon from '../assets/star.svg';
 const Card = ({ name, img, rating, type, isSuperHost }) => (
   <figure>
     <div className="aspect-w-3 aspect-h-2">
-      <img className="object-cover rounded-3xl" src={img} alt="" />
+      <img className="rounded-3xl object-cover" src={img} alt="" />
     </div>
-    <div className="grid grid-cols-card-info grid-rows-card-info items-center gap-y-3 gap-x-4 font-medium whitespace-nowrap py-4">
+    <div className="grid grid-cols-card-info grid-rows-card-info items-center gap-x-4 gap-y-3 font-medium whitespace-nowrap py-4">
       <div>
         {isSuperHost && (
-          <span className="text-xs px-3 py-1 mr-3 rounded-full border border-gray-800 font-bold uppercase">
+          <span className="text-xs font-bold uppercase rounded-full border border-gray-800 px-3 py-1 mr-3">
             Super Host
           </span>
         )}
-        <span className="text-gray-500 text-sm truncate">{type}</span>
+        <span className="text-sm text-gray-500 truncate">{type}</span>
       </div>
       <div className="flex justify-end items-center">
         <img src={StarIcon} alt="" className="w-6 mr-2" />

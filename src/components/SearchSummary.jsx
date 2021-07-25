@@ -1,5 +1,5 @@
-import SearchIcon from '../assets/search.svg';
 import { Fragment } from 'react';
+import SearchIcon from '../assets/search.svg';
 
 const SearchSummary = ({ items, onClick }) => {
   const renderFields = (items) =>
@@ -8,7 +8,7 @@ const SearchSummary = ({ items, onClick }) => {
 
       return (
         <Fragment key={i}>
-          <div className="h-14 px-4 flex items-center hover:bg-gray-100 cursor-pointer">
+          <div className="flex items-center cursor-pointer h-14 px-4 hover:bg-gray-100">
             <span className={color} onClick={() => onClick(i)}>
               {content}
             </span>
@@ -19,7 +19,7 @@ const SearchSummary = ({ items, onClick }) => {
     });
 
   return (
-    <div className="flex items-center shadow-blur rounded-2xl overflow-hidden select-none h-14 my-4 landscape:my-8 mx-auto landscape:mx-0">
+    <div className="flex items-center rounded-2xl overflow-hidden shadow-blur select-none h-14 mx-auto my-4 landscape:mx-0 landscape:my-8">
       {renderFields(items)}
       <img src={SearchIcon} alt="Search" className="px-4" />
     </div>
