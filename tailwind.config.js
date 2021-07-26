@@ -6,6 +6,9 @@ module.exports = {
       boxShadow: {
         blur: '0 1px 6px rgba(0, 0, 0, 0.1)',
       },
+      fontSize: {
+        tiny: '.625rem',
+      },
       gridTemplateColumns: {
         'card-info': '1fr 4rem',
         'card-list': 'repeat(auto-fit, minmax(24.75rem, 1fr))',
