@@ -6,7 +6,7 @@ import Stays from './Stays';
 
 const App = ({ searchBar }) => (
   <div
-    className={`text-gray-800 min-h-screen h-screen ${
+    className={`text-gray-800 max-w-7xl min-h-screen h-screen mx-auto ${
       searchBar.visible ? 'overflow-hidden' : ''
     }`}
   >
