@@ -1,16 +1,16 @@
 <h1 align="center">Windbnb</h1>
 
 <div align="center">
-   Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
+   Solution for a challenge from <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
 </div>
 
 <div align="center">
   <h3>
-    <a href="https://windbnb-bk20dev.vercel.app/">
+    <a href="https://windbnb-woad.vercel.app//">
       Demo
     </a>
     <span> | </span>
-    <a href="https://{your-url-to-the-solution}">
+    <a href="https://devchallenges.io/solutions/mYW91DCol6hJUejq9E2M">
       Solution
     </a>
     <span> | </span>
@@ -40,7 +40,7 @@
 
 <!-- Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering: -->
 
-This is my first bigger (and completed!) project with React.
+This is my first bigger (and completed!) React project.
 
 I have started learning React at the beginning of this year. However. I didn't have enough time to learn it. Finally, during this summer I have completed an online course I was given on Christmas. And now it is the time for practice!
 
