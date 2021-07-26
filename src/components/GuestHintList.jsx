@@ -9,13 +9,17 @@ const GuestHintList = ({ guests, setGuests }) => {
         count={adults}
         name="Adults"
         description="Ages 13 or above"
-        setCount={(count) => setGuests({ ...guests, adults: count })}
+        setCount={(count) =>
+          setGuests({ ...guests, adults: Math.max(count, 0) })
+        }
       />
       <GuestHint
         count={children}
         name="Children"
         description="Ages 2-12"
-        setCount={(count) => setGuests({ ...guests, children: count })}
+        setCount={(count) =>
+          setGuests({ ...guests, children: Math.max(count, 0) })
+        }
       />
     </div>
   );
