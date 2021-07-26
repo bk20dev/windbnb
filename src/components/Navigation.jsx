@@ -6,9 +6,9 @@ import serializeGuests from '../utils/serializers/guests';
 import serializePlace from '../utils/serializers/place';
 import SearchSummary from './SearchSummary';
 
-const Navigation = ({ search }) => {
+const Navigation = ({ filters }) => {
   const items = useMemo(() => {
-    const { place, guests } = search;
+    const { place, guests } = filters;
 
     const placeText = serializePlace(place);
     const guestText = serializeGuests(guests);
@@ -17,7 +17,7 @@ const Navigation = ({ search }) => {
       { content: placeText || 'Where are you going?', active: !!placeText },
       { content: guestText || 'Add guests', active: !!guestText },
     ];
-  }, [search]);
+  }, [filters]);
 
   return (
     <nav className="flex flex-col items-start landscape:flex-row landscape:justify-between landscape:items-center">
@@ -27,6 +27,6 @@ const Navigation = ({ search }) => {
   );
 };
 
-const mapStateToProps = (state) => _.pick(state, 'search');
+const mapStateToProps = (state) => _.pick(state, 'filters');
 
 export default connect(mapStateToProps)(Navigation);

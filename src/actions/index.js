@@ -1,3 +1,4 @@
 import applyFilters from './applyFilters';
+import { closeSearch, openSearch } from './displaySearch';
 
-export { applyFilters };
+export { openSearch, closeSearch, applyFilters };

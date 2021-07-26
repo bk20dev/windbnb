@@ -10,9 +10,9 @@ import GuestHintList from './GuestHintList';
 import PlaceHintList from './PlaceHintList';
 import SearchButton from './SearchButton';
 
-const Search = ({ stays, search, applyFilters }) => {
-  const [guests, setGuests] = useState(search.guests);
-  const [place, setPlace] = useState(search.place);
+const Search = ({ stays, filters, applyFilters }) => {
+  const [guests, setGuests] = useState(filters.guests);
+  const [place, setPlace] = useState(filters.place);
 
   const uniquePlaces = useMemo(
     () =>
@@ -77,6 +77,6 @@ const Search = ({ stays, search, applyFilters }) => {
   );
 };
 
-const mapStateToProps = (state) => _.pick(state, 'search', 'stays');
+const mapStateToProps = (state) => _.pick(state, 'filters', 'stays');
 
 export default connect(mapStateToProps, { applyFilters })(Search);

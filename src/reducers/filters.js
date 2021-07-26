@@ -9,7 +9,7 @@ const INITIAL_STATE = {
   },
 };
 
-const search = (state = INITIAL_STATE, action) => {
+const filterReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'APPLY_FILTERS':
       return { ...state, ...action.payload };
@@ -18,4 +18,4 @@ const search = (state = INITIAL_STATE, action) => {
   }
 };
 
-export default search;
+export default filterReducer;
