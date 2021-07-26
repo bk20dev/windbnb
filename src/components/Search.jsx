@@ -13,11 +13,11 @@ import SearchNavigationMobile from './SearchNavigationMobile';
 
 const HintTab = ({ active, children }) => {
   const display = active ? 'block' : 'hidden';
-  const visibility = active ? 'visible' : 'invisible';
+  const visibility = active ? 'landscape:visible' : 'landscape:invisible';
 
   return (
     <div
-      className={`landscape:w-1/3 flex-grow ${display} landscape:${visibility} landscape:block`}
+      className={`landscape:w-1/3 flex-grow ${display} ${visibility} landscape:block`}
     >
       {children}
     </div>
