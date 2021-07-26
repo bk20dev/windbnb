@@ -1,5 +1,12 @@
 import Field from './Field';
+import GuestHintList from './GuestHintList';
+import PlaceHintList from './PlaceHintList';
 import SearchButton from './SearchButton';
+
+const places = [
+  { country: 'Finland' },
+  { country: 'Finland', city: 'Helsinki' },
+];
 
 const Search = () => (
   <div className="absolute top-0 left-0 bg-gray-600 bg-opacity-40 w-full h-full">
@@ -20,7 +27,18 @@ const Search = () => (
           <SearchButton />
         </div>
       </div>
-      <div>Suggestions</div>
+      <div className="flex">
+        <div className="w-1/3 flex-grow">
+          <PlaceHintList places={places} />
+        </div>
+        <div className="w-1/3 flex-grow">
+          <GuestHintList
+            guests={{ adults: 0, children: 0 }}
+            setGuests={() => {}}
+          />
+        </div>
+        <div className="w-1/3 flex-grow"></div>
+      </div>
     </div>
   </div>
 );
