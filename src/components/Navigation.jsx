@@ -1,22 +1,29 @@
-import { openSearch } from '../actions';
 import _ from 'lodash';
 import { useMemo } from 'react';
 import { connect } from 'react-redux';
+import { openSearch } from '../actions';
 import Logo from '../assets/logo.svg';
-import serializeGuests from '../utils/serializers/guests';
 import serializePlace from '../utils/serializers/place';
+import singularOrPlural from '../utils/singularOrPlural';
 import SearchSummary from './SearchSummary';
 
 const Navigation = ({ filters, openSearch }) => {
   const items = useMemo(() => {
     const { place, guests } = filters;
+    const guestCount = guests.adults + guests.children;
 
     const placeText = serializePlace(place);
-    const guestText = serializeGuests(guests);
+    const guestText = singularOrPlural(guestCount, 'guest', 'guests');
 
     return [
-      { content: placeText || 'Where are you going?', active: !!placeText },
-      { content: guestText || 'Add guests', active: !!guestText },
+      {
+        content: placeText || 'Where are you going?',
+        active: !!placeText,
+      },
+      {
+        content: (guestCount && guestText) || 'Add guests',
+        active: !!guestCount,
+      },
     ];
   }, [filters]);
 

@@ -33,28 +33,37 @@ const Search = ({
   closeSearch,
 }) => {
   const [guests, setGuests] = useState(filters.guests);
-  const [place, setPlace] = useState(filters.place);
+  const guestCount = guests.adults + guests.children;
+
+  const [searchText, setSearchText] = useState(serializePlace(filters.place));
 
   const uniquePlaces = useMemo(
     () =>
       _.chain(stays)
         .map((place) => _.pick(place, 'city', 'country'))
         .uniqWith(_.isEqual)
+        .map(({ city, country }) => ({
+          city,
+          country,
+          flat: `${city}, ${country}`,
+        }))
         .value(),
     [stays]
   );
 
-  const [searchText, setSearchText] = useState('');
+  const searchResults = useSearch(uniquePlaces, ['flat'], 4, searchText);
+
   const activeField = searchBar.activeField;
 
-  const guestCount = guests.adults + guests.children;
+  const search = () => {
+    const place = (searchText && searchResults[0]) || {
+      country: null,
+      city: null,
+    };
 
-  const searchResults = useSearch(
-    uniquePlaces,
-    ['country', 'city'],
-    4,
-    searchText
-  );
+    applyFilters({ place, guests });
+    closeSearch();
+  };
 
   return (
     <div
@@ -91,12 +100,7 @@ const Search = ({
               />
             </div>
             <div className="landscape:w-1/3 flex-grow items-center hidden landscape:flex">
-              <SearchButton
-                onClick={() => {
-                  applyFilters({ place, guests });
-                  closeSearch();
-                }}
-              />
+              <SearchButton onClick={search} />
             </div>
           </div>
 
@@ -105,10 +109,7 @@ const Search = ({
             <HintTab active={activeField === 0}>
               <PlaceHintList
                 places={searchResults}
-                onSelect={(place) => {
-                  setPlace(place);
-                  setSearchText(serializePlace(place));
-                }}
+                onSelect={(place) => setSearchText(serializePlace(place))}
               />
             </HintTab>
             <HintTab active={activeField === 1}>
@@ -119,12 +120,7 @@ const Search = ({
 
           {/* Mobile Search Button */}
           <div className="block landscape:hidden mt-6">
-            <SearchButton
-              onClick={() => {
-                applyFilters({ place, guests });
-                closeSearch();
-              }}
-            />
+            <SearchButton onClick={search} />
           </div>
         </div>
       </div>
