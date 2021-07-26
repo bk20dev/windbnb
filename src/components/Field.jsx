@@ -1,4 +1,4 @@
-const Field = ({ name, placeholder, value, setValue, readOnly }) => (
+const Field = ({ name, placeholder, value, setValue, onFocus, readOnly }) => (
   <div className="relative rounded-2xl">
     <p className="absolute left-7 top-3 text-tiny font-bold uppercase pointer-events-none">
       {name.toUpperCase()}
@@ -8,6 +8,7 @@ const Field = ({ name, placeholder, value, setValue, readOnly }) => (
       value={value}
       onChange={(e) => setValue(e.target.value)}
       placeholder={placeholder}
+      onFocus={onFocus}
       readOnly={readOnly}
     />
   </div>

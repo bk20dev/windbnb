@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { useMemo, useState } from 'react';
 import { connect } from 'react-redux';
-import { applyFilters } from '../actions';
+import { applyFilters, closeSearch, openSearch } from '../actions';
 import useSearch from '../hooks/useSearch';
 import serializePlace from '../utils/serializers/place';
 import singularOrPlural from '../utils/singularOrPlural';
@@ -10,7 +10,14 @@ import GuestHintList from './GuestHintList';
 import PlaceHintList from './PlaceHintList';
 import SearchButton from './SearchButton';
 
-const Search = ({ stays, filters, applyFilters }) => {
+const Search = ({
+  stays,
+  filters,
+  applyFilters,
+  searchBar,
+  openSearch,
+  closeSearch,
+}) => {
   const [guests, setGuests] = useState(filters.guests);
   const [place, setPlace] = useState(filters.place);
 
@@ -24,6 +31,8 @@ const Search = ({ stays, filters, applyFilters }) => {
   );
 
   const [searchText, setSearchText] = useState('');
+  const activeField = searchBar.activeField;
+
   const guestCount = guests.adults + guests.children;
 
   const searchResults = useSearch(
@@ -34,8 +43,11 @@ const Search = ({ stays, filters, applyFilters }) => {
   );
 
   return (
-    <div className="absolute top-0 left-0 bg-gray-600 bg-opacity-40 w-full h-full">
-      <div className="bg-white p-24">
+    <div
+      className="absolute top-0 left-0 bg-gray-600 bg-opacity-40 w-full h-full"
+      onClick={closeSearch}
+    >
+      <div className="bg-white p-24" onClick={(e) => e.stopPropagation()}>
         <div className="flex border border-gray-100 rounded-2xl divide-x divide-gray-100">
           <div className="w-1/3 flex-grow">
             <Field
@@ -43,6 +55,7 @@ const Search = ({ stays, filters, applyFilters }) => {
               placeholder="Where are you going?"
               value={searchText}
               setValue={setSearchText}
+              onFocus={() => openSearch(0)}
             />
           </div>
           <div className="w-1/3 flex-grow">
@@ -50,15 +63,25 @@ const Search = ({ stays, filters, applyFilters }) => {
               name="Guests"
               placeholder="Add guests"
               value={singularOrPlural(guestCount, 'guest', 'guests')}
+              onFocus={() => openSearch(1)}
               readOnly
             />
           </div>
           <div className="w-1/3 flex-grow flex items-center">
-            <SearchButton onClick={() => applyFilters({ place, guests })} />
+            <SearchButton
+              onClick={() => {
+                applyFilters({ place, guests });
+                closeSearch();
+              }}
+            />
           </div>
         </div>
         <div className="flex">
-          <div className="w-1/3 flex-grow">
+          <div
+            className={`w-1/3 flex-grow ${
+              activeField === 0 ? 'visible' : 'invisible'
+            }`}
+          >
             <PlaceHintList
               places={searchResults}
               onSelect={(place) => {
@@ -67,7 +90,11 @@ const Search = ({ stays, filters, applyFilters }) => {
               }}
             />
           </div>
-          <div className="w-1/3 flex-grow">
+          <div
+            className={`w-1/3 flex-grow ${
+              activeField === 1 ? 'visible' : 'invisible'
+            }`}
+          >
             <GuestHintList guests={guests} setGuests={setGuests} />
           </div>
           <div className="w-1/3 flex-grow"></div>
@@ -77,6 +104,11 @@ const Search = ({ stays, filters, applyFilters }) => {
   );
 };
 
-const mapStateToProps = (state) => _.pick(state, 'filters', 'stays');
+const mapStateToProps = (state) =>
+  _.pick(state, 'filters', 'stays', 'searchBar');
 
-export default connect(mapStateToProps, { applyFilters })(Search);
+export default connect(mapStateToProps, {
+  applyFilters,
+  openSearch,
+  closeSearch,
+})(Search);

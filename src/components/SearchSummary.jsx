@@ -8,10 +8,11 @@ const SearchSummary = ({ items, onClick }) => {
 
       return (
         <Fragment key={i}>
-          <div className="flex items-center cursor-pointer h-14 px-4 hover:bg-gray-100">
-            <span className={color} onClick={() => onClick(i)}>
-              {content}
-            </span>
+          <div
+            className="flex items-center cursor-pointer h-14 px-4 hover:bg-gray-100"
+            onClick={() => onClick(i)}
+          >
+            <span className={color}>{content}</span>
           </div>
           <span className="border-r border-gray-100 h-14" />
         </Fragment>

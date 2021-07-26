@@ -4,5 +4,5 @@ export const openSearch = (activeField = 0) => ({
 });
 
 export const closeSearch = () => ({
-  type: 'OPEN_SEARCH',
+  type: 'CLOSE_SEARCH',
 });
