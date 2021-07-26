@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
-import stays from './stays';
-import search from './search';
+import staysReducer from './stays';
+import filterReducer from './filters';
+import searchBarReducer from './searchBar';
 
 export default combineReducers({
-  stays,
-  search,
+  stays: staysReducer,
+  searchBar: searchBarReducer,
+  filters: filterReducer,
 });

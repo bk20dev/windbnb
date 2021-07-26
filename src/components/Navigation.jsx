@@ -1,3 +1,4 @@
+import { openSearch } from '../actions';
 import _ from 'lodash';
 import { useMemo } from 'react';
 import { connect } from 'react-redux';
@@ -6,9 +7,9 @@ import serializeGuests from '../utils/serializers/guests';
 import serializePlace from '../utils/serializers/place';
 import SearchSummary from './SearchSummary';
 
-const Navigation = ({ search }) => {
+const Navigation = ({ filters, openSearch }) => {
   const items = useMemo(() => {
-    const { place, guests } = search;
+    const { place, guests } = filters;
 
     const placeText = serializePlace(place);
     const guestText = serializeGuests(guests);
@@ -17,16 +18,16 @@ const Navigation = ({ search }) => {
       { content: placeText || 'Where are you going?', active: !!placeText },
       { content: guestText || 'Add guests', active: !!guestText },
     ];
-  }, [search]);
+  }, [filters]);
 
   return (
     <nav className="flex flex-col items-start landscape:flex-row landscape:justify-between landscape:items-center">
       <img src={Logo} alt="Windbnb" className="h-6 my-6 landscape:my-8" />
-      <SearchSummary items={items} onClick={console.log} />
+      <SearchSummary items={items} onClick={openSearch} />
     </nav>
   );
 };
 
-const mapStateToProps = (state) => _.pick(state, 'search');
+const mapStateToProps = (state) => _.pick(state, 'filters');
 
-export default connect(mapStateToProps)(Navigation);
+export default connect(mapStateToProps, { openSearch })(Navigation);
