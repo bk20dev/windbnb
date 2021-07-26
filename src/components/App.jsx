@@ -5,7 +5,11 @@ import Search from './Search';
 import Stays from './Stays';
 
 const App = ({ searchBar }) => (
-  <div className="text-gray-800 min-h-screen">
+  <div
+    className={`text-gray-800 min-h-screen h-screen ${
+      searchBar.visible ? 'overflow-hidden' : ''
+    }`}
+  >
     <Stays />
     <Footer />
     {searchBar.visible && <Search />}
